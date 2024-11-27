@@ -3,6 +3,7 @@ from pydantic import BaseModel
 import pickle
 import requests
 from typing import List
+import os
 
 
 movie_df = pickle.load(open("movie_df.pkl", "rb"))
@@ -13,7 +14,7 @@ restricted_movies = pickle.load(open("restricted_movies.pkl", "rb"))
 app = FastAPI()
 
 def fetch_movie_poster(movie_id):
-    api_key = "291596fc4042cc91839854d0a821c41f"
+    api_key = os.getenv("TMDB_ID")
     base_url = "https://api.themoviedb.org/3/movie/"
     poster_base_url = "https://image.tmdb.org/t/p/w500"
 
